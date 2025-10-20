@@ -5,9 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
+  const [openDialog, setOpenDialog] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -84,112 +86,129 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background">
-      <section id="home" className="min-h-screen flex items-center justify-center px-4">
-        <div className="text-center animate-fade-in">
-          <div className="mb-8 text-6xl animate-float">🌸</div>
-          <h1 className="text-7xl md:text-9xl font-light mb-4 text-foreground">Анна & Иван</h1>
-          <div className="w-24 h-px bg-primary mx-auto mb-6"></div>
-          <p className="text-2xl md:text-3xl text-muted-foreground mb-8">15 августа 2025</p>
-          <p className="text-lg text-muted-foreground mb-8">Через {daysUntil} дней</p>
-          <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed mb-12">
-            Мы рады пригласить вас разделить с нами этот особенный день, 
-            когда мы начнем наше совместное путешествие по жизни
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="#story">
-              <Button variant="outline" className="gap-2">
-                <Icon name="Heart" size={18} />
-                Наша история
-              </Button>
-            </a>
-            <a href="#location">
-              <Button variant="outline" className="gap-2">
-                <Icon name="MapPin" size={18} />
-                Локация
-              </Button>
-            </a>
-            <a href="#schedule">
-              <Button variant="outline" className="gap-2">
-                <Icon name="Clock" size={18} />
-                Расписание
-              </Button>
-            </a>
-            <a href="#rsvp">
-              <Button className="gap-2">
-                <Icon name="CheckCircle" size={18} />
-                Подтвердить присутствие
-              </Button>
-            </a>
-          </div>
+    <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background flex items-center justify-center px-4">
+      <div className="text-center animate-fade-in max-w-4xl w-full py-20">
+        <div className="mb-8 text-6xl animate-float">🌸</div>
+        <h1 className="text-7xl md:text-9xl font-light mb-4 text-foreground">Анна & Иван</h1>
+        <div className="w-24 h-px bg-primary mx-auto mb-6"></div>
+        <p className="text-2xl md:text-3xl text-muted-foreground mb-4">15 августа 2025</p>
+        <p className="text-lg text-muted-foreground mb-8">Через {daysUntil} дней</p>
+        <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed mb-12">
+          Мы рады пригласить вас разделить с нами этот особенный день, 
+          когда мы начнем наше совместное путешествие по жизни
+        </p>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          <Button 
+            variant="outline" 
+            className="gap-2 h-24 flex-col"
+            onClick={() => setOpenDialog('story')}
+          >
+            <Icon name="Heart" size={24} />
+            <span>Наша история</span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="gap-2 h-24 flex-col"
+            onClick={() => setOpenDialog('location')}
+          >
+            <Icon name="MapPin" size={24} />
+            <span>Место</span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="gap-2 h-24 flex-col"
+            onClick={() => setOpenDialog('schedule')}
+          >
+            <Icon name="Clock" size={24} />
+            <span>Расписание</span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="gap-2 h-24 flex-col"
+            onClick={() => setOpenDialog('gallery')}
+          >
+            <Icon name="Image" size={24} />
+            <span>Фото</span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="gap-2 h-24 flex-col"
+            onClick={() => setOpenDialog('gifts')}
+          >
+            <Icon name="Gift" size={24} />
+            <span>Подарки</span>
+          </Button>
+          
+          <Button 
+            className="gap-2 h-24 flex-col"
+            onClick={() => setOpenDialog('rsvp')}
+          >
+            <Icon name="CheckCircle" size={24} />
+            <span>RSVP</span>
+          </Button>
         </div>
-      </section>
+      </div>
 
-      <section id="story" className="min-h-screen py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">Наша история</h2>
-          <div className="space-y-12">
+      <Dialog open={openDialog === 'story'} onOpenChange={() => setOpenDialog(null)}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-4xl font-light text-center mb-8">Наша история</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-8">
             {story.map((item, index) => (
-              <Card key={index} className="p-8 bg-white/60 backdrop-blur-sm border-primary/20 hover:shadow-lg transition-shadow">
-                <div className="flex flex-col md:flex-row items-start gap-6">
-                  <div className="text-4xl font-light text-primary min-w-[100px]">{item.year}</div>
+              <Card key={index} className="p-6 bg-white/60 backdrop-blur-sm border-primary/20">
+                <div className="flex flex-col md:flex-row items-start gap-4">
+                  <div className="text-3xl font-light text-primary min-w-[80px]">{item.year}</div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-medium mb-2 text-foreground">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                    <h3 className="text-xl font-medium mb-2 text-foreground">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
               </Card>
             ))}
           </div>
-          <div className="flex justify-center gap-4 mt-12">
-            <a href="#home">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Icon name="ArrowUp" size={16} />
-                Наверх
-              </Button>
-            </a>
-            <a href="#location">
-              <Button variant="ghost" size="sm" className="gap-2">
-                Далее
-                <Icon name="ArrowDown" size={16} />
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
+        </DialogContent>
+      </Dialog>
 
-      <section id="location" className="min-h-screen py-20 px-4 bg-secondary/30">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">Место проведения</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-8 bg-white/60 backdrop-blur-sm border-primary/20">
-              <div className="flex items-start gap-4 mb-6">
-                <Icon name="MapPin" className="text-primary" size={32} />
+      <Dialog open={openDialog === 'location'} onOpenChange={() => setOpenDialog(null)}>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-4xl font-light text-center mb-8">Место проведения</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6">
+            <Card className="p-6 bg-white/60 backdrop-blur-sm border-primary/20">
+              <div className="flex items-start gap-4 mb-4">
+                <Icon name="MapPin" className="text-primary" size={28} />
                 <div>
-                  <h3 className="text-2xl font-medium mb-2 text-foreground">Загородный клуб "Зеленая роща"</h3>
+                  <h3 className="text-xl font-medium mb-2 text-foreground">Загородный клуб "Зеленая роща"</h3>
                   <p className="text-muted-foreground">Московская область, Истринский район</p>
                 </div>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Icon name="Clock" className="text-primary" size={20} />
+                  <Icon name="Clock" className="text-primary" size={18} />
                   <span className="text-muted-foreground">Начало в 14:00</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Icon name="Car" className="text-primary" size={20} />
+                  <Icon name="Car" className="text-primary" size={18} />
                   <span className="text-muted-foreground">Бесплатная парковка</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Icon name="TreePine" className="text-primary" size={20} />
+                  <Icon name="TreePine" className="text-primary" size={18} />
                   <span className="text-muted-foreground">Церемония на природе</span>
                 </div>
               </div>
-              <Button className="w-full mt-6" variant="outline">
+              <Button className="w-full mt-4" variant="outline">
                 <Icon name="Navigation" className="mr-2" size={18} />
                 Открыть в картах
               </Button>
             </Card>
-            <div className="rounded-2xl overflow-hidden shadow-lg h-[400px] bg-muted">
+            <div className="rounded-2xl overflow-hidden shadow-lg h-[300px] bg-muted">
               <iframe
                 src="https://yandex.ru/map-widget/v1/?ll=37.617700,55.755800&z=10"
                 width="100%"
@@ -199,268 +218,198 @@ const Index = () => {
               />
             </div>
           </div>
-          <div className="flex justify-center gap-4 mt-12">
-            <a href="#story">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Icon name="ArrowUp" size={16} />
-                Назад
-              </Button>
-            </a>
-            <a href="#schedule">
-              <Button variant="ghost" size="sm" className="gap-2">
-                Далее
-                <Icon name="ArrowDown" size={16} />
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
+        </DialogContent>
+      </Dialog>
 
-      <section id="schedule" className="min-h-screen py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">Расписание дня</h2>
-          <div className="space-y-6">
+      <Dialog open={openDialog === 'schedule'} onOpenChange={() => setOpenDialog(null)}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-4xl font-light text-center mb-8">Расписание дня</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
             {schedule.map((item, index) => (
-              <Card key={index} className="p-6 bg-white/60 backdrop-blur-sm border-primary/20 hover:shadow-lg transition-all hover:scale-[1.02]">
-                <div className="flex items-center gap-6">
-                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
-                    <Icon name={item.icon as any} className="text-primary" size={28} />
+              <Card key={index} className="p-4 bg-white/60 backdrop-blur-sm border-primary/20">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10">
+                    <Icon name={item.icon as any} className="text-primary" size={24} />
                   </div>
                   <div className="flex-1">
-                    <div className="text-3xl font-light text-primary mb-1">{item.time}</div>
-                    <div className="text-xl text-foreground">{item.event}</div>
+                    <div className="text-2xl font-light text-primary">{item.time}</div>
+                    <div className="text-lg text-foreground">{item.event}</div>
                   </div>
                 </div>
               </Card>
             ))}
           </div>
-          <div className="flex justify-center gap-4 mt-12">
-            <a href="#location">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Icon name="ArrowUp" size={16} />
-                Назад
-              </Button>
-            </a>
-            <a href="#rsvp">
-              <Button variant="ghost" size="sm" className="gap-2">
-                Далее
-                <Icon name="ArrowDown" size={16} />
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
+        </DialogContent>
+      </Dialog>
 
-      <section id="rsvp" className="min-h-screen py-20 px-4 bg-secondary/30">
-        <div className="container mx-auto max-w-2xl">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-8 text-foreground">Подтвердите присутствие</h2>
-          <p className="text-center text-muted-foreground mb-12 text-lg">
-            Пожалуйста, сообщите нам о вашем решении до 1 августа 2025
-          </p>
-          
-          <Card className="p-8 bg-white/60 backdrop-blur-sm border-primary/20">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <Label htmlFor="full_name">Ваше имя *</Label>
-                <Input
-                  id="full_name"
-                  value={formData.full_name}
-                  onChange={(e) => setFormData({...formData, full_name: e.target.value})}
-                  required
-                  className="mt-2"
-                  placeholder="Имя и Фамилия"
-                />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="mt-2"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="phone">Телефон</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="mt-2"
-                    placeholder="+7 999 123-45-67"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label className="mb-3 block">Вы придёте? *</Label>
-                <RadioGroup
-                  value={formData.attendance}
-                  onValueChange={(value) => setFormData({...formData, attendance: value})}
-                  className="flex flex-col gap-3"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="yes" id="yes" />
-                    <Label htmlFor="yes" className="cursor-pointer">✅ Да, с удовольствием</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="maybe" id="maybe" />
-                    <Label htmlFor="maybe" className="cursor-pointer">🤔 Возможно</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="no" id="no" />
-                    <Label htmlFor="no" className="cursor-pointer">❌ К сожалению, не смогу</Label>
-                  </div>
-                </RadioGroup>
-              </div>
-
-              {formData.attendance !== 'no' && (
-                <div>
-                  <Label htmlFor="guests_count">Количество гостей</Label>
-                  <Input
-                    id="guests_count"
-                    type="number"
-                    min="1"
-                    max="10"
-                    value={formData.guests_count}
-                    onChange={(e) => setFormData({...formData, guests_count: parseInt(e.target.value) || 1})}
-                    className="mt-2"
-                  />
-                </div>
-              )}
-
-              <div>
-                <Label htmlFor="dietary_restrictions">Пищевые ограничения</Label>
-                <Input
-                  id="dietary_restrictions"
-                  value={formData.dietary_restrictions}
-                  onChange={(e) => setFormData({...formData, dietary_restrictions: e.target.value})}
-                  className="mt-2"
-                  placeholder="Вегетарианец, аллергия на..."
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="message">Пожелания молодожёнам</Label>
-                <Textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="mt-2"
-                  rows={4}
-                  placeholder="Ваши тёплые слова..."
-                />
-              </div>
-
-              {submitMessage && (
-                <div className={`p-4 rounded-lg text-center ${
-                  submitMessage.includes('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
-                }`}>
-                  {submitMessage}
-                </div>
-              )}
-
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Отправка...' : 'Отправить ответ'}
-              </Button>
-            </form>
-          </Card>
-          <div className="flex justify-center gap-4 mt-12">
-            <a href="#schedule">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Icon name="ArrowUp" size={16} />
-                Назад
-              </Button>
-            </a>
-            <a href="#gallery">
-              <Button variant="ghost" size="sm" className="gap-2">
-                Далее
-                <Icon name="ArrowDown" size={16} />
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="gallery" className="min-h-screen py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">Галерея</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+      <Dialog open={openDialog === 'gallery'} onOpenChange={() => setOpenDialog(null)}>
+        <DialogContent className="max-w-5xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-4xl font-light text-center mb-8">Галерея</DialogTitle>
+          </DialogHeader>
+          <div className="grid md:grid-cols-3 gap-4">
             {gallery.map((image, index) => (
-              <div key={index} className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow aspect-square">
+              <div key={index} className="rounded-xl overflow-hidden shadow-lg aspect-square">
                 <img
                   src={image}
                   alt={`Gallery ${index + 1}`}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
           </div>
-          <div className="flex justify-center gap-4 mt-12">
-            <a href="#rsvp">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Icon name="ArrowUp" size={16} />
-                Назад
-              </Button>
-            </a>
-            <a href="#gifts">
-              <Button variant="ghost" size="sm" className="gap-2">
-                Далее
-                <Icon name="ArrowDown" size={16} />
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
+        </DialogContent>
+      </Dialog>
 
-      <section id="gifts" className="min-h-screen py-20 px-4 flex items-center">
-        <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="text-5xl md:text-6xl font-light mb-8 text-foreground">Подарки</h2>
-          <Card className="p-12 bg-white/60 backdrop-blur-sm border-primary/20">
-            <div className="mb-8 text-6xl">🎁</div>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+      <Dialog open={openDialog === 'gifts'} onOpenChange={() => setOpenDialog(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-4xl font-light text-center mb-8">Подарки</DialogTitle>
+          </DialogHeader>
+          <div className="text-center">
+            <div className="mb-6 text-5xl">🎁</div>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Ваше присутствие — самый ценный подарок для нас. 
               Если вы хотите нас порадовать, мы будем благодарны за вклад в наше свадебное путешествие.
             </p>
-            <div className="space-y-4">
-              <div className="p-4 bg-accent/20 rounded-lg">
-                <p className="text-sm text-muted-foreground mb-2">Сбербанк</p>
-                <p className="text-lg font-medium">2202 2020 2020 2020</p>
+            <Card className="p-6 bg-accent/20">
+              <p className="text-sm text-muted-foreground mb-2">Сбербанк</p>
+              <p className="text-xl font-medium">2202 2020 2020 2020</p>
+            </Card>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={openDialog === 'rsvp'} onOpenChange={() => setOpenDialog(null)}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-4xl font-light text-center mb-4">Подтвердите присутствие</DialogTitle>
+          </DialogHeader>
+          <p className="text-center text-muted-foreground mb-6">
+            Пожалуйста, сообщите нам о вашем решении до 1 августа 2025
+          </p>
+          
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="full_name">Ваше имя *</Label>
+              <Input
+                id="full_name"
+                value={formData.full_name}
+                onChange={(e) => setFormData({...formData, full_name: e.target.value})}
+                required
+                className="mt-2"
+                placeholder="Имя и Фамилия"
+              />
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="mt-2"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div>
+                <Label htmlFor="phone">Телефон</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="mt-2"
+                  placeholder="+7 999 123-45-67"
+                />
               </div>
             </div>
-          </Card>
-          <div className="flex justify-center gap-4 mt-12">
-            <a href="#gallery">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Icon name="ArrowUp" size={16} />
-                Назад
-              </Button>
-            </a>
-            <a href="#home">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Icon name="Home" size={16} />
-                В начало
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
 
-      <footer className="py-12 px-4 bg-white/80 backdrop-blur-md">
-        <div className="container mx-auto text-center">
-          <div className="text-4xl mb-4">💐</div>
-          <p className="text-muted-foreground mb-2">С любовью, Анна и Иван</p>
-          <p className="text-sm text-muted-foreground">15 августа 2025</p>
-        </div>
+            <div>
+              <Label className="mb-3 block">Вы придёте? *</Label>
+              <RadioGroup
+                value={formData.attendance}
+                onValueChange={(value) => setFormData({...formData, attendance: value})}
+                className="flex flex-col gap-2"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="yes" id="yes" />
+                  <Label htmlFor="yes" className="cursor-pointer">✅ Да, с удовольствием</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="maybe" id="maybe" />
+                  <Label htmlFor="maybe" className="cursor-pointer">🤔 Возможно</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="no" id="no" />
+                  <Label htmlFor="no" className="cursor-pointer">❌ К сожалению, не смогу</Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            {formData.attendance !== 'no' && (
+              <div>
+                <Label htmlFor="guests_count">Количество гостей</Label>
+                <Input
+                  id="guests_count"
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={formData.guests_count}
+                  onChange={(e) => setFormData({...formData, guests_count: parseInt(e.target.value) || 1})}
+                  className="mt-2"
+                />
+              </div>
+            )}
+
+            <div>
+              <Label htmlFor="dietary_restrictions">Пищевые ограничения</Label>
+              <Input
+                id="dietary_restrictions"
+                value={formData.dietary_restrictions}
+                onChange={(e) => setFormData({...formData, dietary_restrictions: e.target.value})}
+                className="mt-2"
+                placeholder="Вегетарианец, аллергия на..."
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="message">Пожелания молодожёнам</Label>
+              <Textarea
+                id="message"
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                className="mt-2"
+                rows={3}
+                placeholder="Ваши тёплые слова..."
+              />
+            </div>
+
+            {submitMessage && (
+              <div className={`p-3 rounded-lg text-center text-sm ${
+                submitMessage.includes('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
+              }`}>
+                {submitMessage}
+              </div>
+            )}
+
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Отправка...' : 'Отправить ответ'}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      <footer className="fixed bottom-0 w-full py-4 text-center bg-white/60 backdrop-blur-sm">
+        <p className="text-sm text-muted-foreground">С любовью, Анна и Иван 💐</p>
       </footer>
     </div>
   );
