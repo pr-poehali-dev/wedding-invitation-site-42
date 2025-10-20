@@ -85,19 +85,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background">
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-center gap-6">
-          <a href="#home" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Главная</a>
-          <a href="#story" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">История</a>
-          <a href="#location" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Локация</a>
-          <a href="#schedule" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Расписание</a>
-          <a href="#rsvp" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">RSVP</a>
-          <a href="#gallery" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Галерея</a>
-          <a href="#gifts" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Подарки</a>
-        </div>
-      </nav>
-
-      <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-4">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center animate-fade-in">
           <div className="mb-8 text-6xl animate-float">🌸</div>
           <h1 className="text-7xl md:text-9xl font-light mb-4 text-foreground">Анна & Иван</h1>
