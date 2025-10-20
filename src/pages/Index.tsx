@@ -8,7 +8,6 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('home');
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
@@ -20,11 +19,6 @@ const Index = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-
-  const scrollToSection = (id: string) => {
-    setActiveSection(id);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,23 +87,13 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background">
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-center gap-6">
-          {['home', 'story', 'location', 'schedule', 'rsvp', 'gallery', 'gifts'].map((section) => (
-            <button
-              key={section}
-              onClick={() => scrollToSection(section)}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                activeSection === section ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              {section === 'home' && 'Главная'}
-              {section === 'story' && 'История'}
-              {section === 'location' && 'Локация'}
-              {section === 'schedule' && 'Расписание'}
-              {section === 'rsvp' && 'RSVP'}
-              {section === 'gallery' && 'Галерея'}
-              {section === 'gifts' && 'Подарки'}
-            </button>
-          ))}
+          <a href="#home" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Главная</a>
+          <a href="#story" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">История</a>
+          <a href="#location" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Локация</a>
+          <a href="#schedule" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Расписание</a>
+          <a href="#rsvp" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">RSVP</a>
+          <a href="#gallery" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Галерея</a>
+          <a href="#gifts" className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground">Подарки</a>
         </div>
       </nav>
 
