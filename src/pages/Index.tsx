@@ -93,19 +93,31 @@ const Index = () => {
         <div className="w-24 h-px bg-primary mx-auto mb-6"></div>
         <p className="text-2xl md:text-3xl text-muted-foreground mb-4">15 августа 2025</p>
         <p className="text-lg text-muted-foreground mb-8">Через {daysUntil} дней</p>
-        <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed mb-12">
+        <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed mb-8">
           Мы рады пригласить вас разделить с нами этот особенный день, 
           когда мы начнем наше совместное путешествие по жизни
         </p>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+        <div className="max-w-md mx-auto mb-8">
+          <Button 
+            className="gap-2 h-20 w-full text-lg"
+            onClick={() => setOpenDialog('rsvp')}
+          >
+            <Icon name="CheckCircle" size={28} />
+            <span>Подтвердить присутствие</span>
+          </Button>
+        </div>
+
+        <div className="w-32 h-px bg-primary/30 mx-auto mb-8"></div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
           <Button 
             variant="outline" 
             className="gap-2 h-24 flex-col"
             onClick={() => setOpenDialog('story')}
           >
             <Icon name="Heart" size={24} />
-            <span>Наша история</span>
+            <span>История</span>
           </Button>
           
           <Button 
@@ -142,14 +154,6 @@ const Index = () => {
           >
             <Icon name="Gift" size={24} />
             <span>Подарки</span>
-          </Button>
-          
-          <Button 
-            className="gap-2 h-24 flex-col"
-            onClick={() => setOpenDialog('rsvp')}
-          >
-            <Icon name="CheckCircle" size={24} />
-            <span>RSVP</span>
           </Button>
         </div>
       </div>
