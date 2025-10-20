@@ -1,14 +1,66 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [formData, setFormData] = useState({
+    full_name: '',
+    email: '',
+    phone: '',
+    attendance: 'yes',
+    guests_count: 1,
+    dietary_restrictions: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/94d115d8-2d79-4983-a303-a43f34c4f1d2', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage('✅ Спасибо! Ваш ответ успешно сохранён');
+        setFormData({
+          full_name: '',
+          email: '',
+          phone: '',
+          attendance: 'yes',
+          guests_count: 1,
+          dietary_restrictions: '',
+          message: ''
+        });
+      } else {
+        setSubmitMessage(`❌ Ошибка: ${data.error || 'Попробуйте позже'}`);
+      }
+    } catch (error) {
+      setSubmitMessage('❌ Ошибка отправки. Проверьте подключение к интернету');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const weddingDate = new Date('2025-08-15');
@@ -41,7 +93,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background">
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-center gap-6">
-          {['home', 'story', 'location', 'schedule', 'gallery', 'gifts'].map((section) => (
+          {['home', 'story', 'location', 'schedule', 'rsvp', 'gallery', 'gifts'].map((section) => (
             <button
               key={section}
               onClick={() => scrollToSection(section)}
@@ -53,6 +105,7 @@ const Index = () => {
               {section === 'story' && 'История'}
               {section === 'location' && 'Локация'}
               {section === 'schedule' && 'Расписание'}
+              {section === 'rsvp' && 'RSVP'}
               {section === 'gallery' && 'Галерея'}
               {section === 'gifts' && 'Подарки'}
             </button>
@@ -158,7 +211,133 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="gallery" className="min-h-screen py-20 px-4 bg-secondary/30">
+      <section id="rsvp" className="min-h-screen py-20 px-4 bg-secondary/30">
+        <div className="container mx-auto max-w-2xl">
+          <h2 className="text-5xl md:text-6xl font-light text-center mb-8 text-foreground">Подтвердите присутствие</h2>
+          <p className="text-center text-muted-foreground mb-12 text-lg">
+            Пожалуйста, сообщите нам о вашем решении до 1 августа 2025
+          </p>
+          
+          <Card className="p-8 bg-white/60 backdrop-blur-sm border-primary/20">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <Label htmlFor="full_name">Ваше имя *</Label>
+                <Input
+                  id="full_name"
+                  value={formData.full_name}
+                  onChange={(e) => setFormData({...formData, full_name: e.target.value})}
+                  required
+                  className="mt-2"
+                  placeholder="Имя и Фамилия"
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="mt-2"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Телефон</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="mt-2"
+                    placeholder="+7 999 123-45-67"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label className="mb-3 block">Вы придёте? *</Label>
+                <RadioGroup
+                  value={formData.attendance}
+                  onValueChange={(value) => setFormData({...formData, attendance: value})}
+                  className="flex flex-col gap-3"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="yes" id="yes" />
+                    <Label htmlFor="yes" className="cursor-pointer">✅ Да, с удовольствием</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="maybe" id="maybe" />
+                    <Label htmlFor="maybe" className="cursor-pointer">🤔 Возможно</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="no" />
+                    <Label htmlFor="no" className="cursor-pointer">❌ К сожалению, не смогу</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              {formData.attendance !== 'no' && (
+                <div>
+                  <Label htmlFor="guests_count">Количество гостей</Label>
+                  <Input
+                    id="guests_count"
+                    type="number"
+                    min="1"
+                    max="10"
+                    value={formData.guests_count}
+                    onChange={(e) => setFormData({...formData, guests_count: parseInt(e.target.value) || 1})}
+                    className="mt-2"
+                  />
+                </div>
+              )}
+
+              <div>
+                <Label htmlFor="dietary_restrictions">Пищевые ограничения</Label>
+                <Input
+                  id="dietary_restrictions"
+                  value={formData.dietary_restrictions}
+                  onChange={(e) => setFormData({...formData, dietary_restrictions: e.target.value})}
+                  className="mt-2"
+                  placeholder="Вегетарианец, аллергия на..."
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="message">Пожелания молодожёнам</Label>
+                <Textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  className="mt-2"
+                  rows={4}
+                  placeholder="Ваши тёплые слова..."
+                />
+              </div>
+
+              {submitMessage && (
+                <div className={`p-4 rounded-lg text-center ${
+                  submitMessage.includes('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'
+                }`}>
+                  {submitMessage}
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Отправка...' : 'Отправить ответ'}
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </section>
+
+      <section id="gallery" className="min-h-screen py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">Галерея</h2>
           <div className="grid md:grid-cols-3 gap-6">
