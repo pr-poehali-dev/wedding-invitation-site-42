@@ -100,11 +100,10 @@ const Index = () => {
         
         <div className="max-w-md mx-auto mb-8">
           <Button 
-            className="gap-2 h-20 w-full text-lg"
+            className="h-20 w-full text-lg"
             onClick={() => setOpenDialog('rsvp')}
           >
-            <Icon name="CheckCircle" size={28} />
-            <span>Подтвердить присутствие</span>
+            Подтвердить присутствие
           </Button>
         </div>
 
