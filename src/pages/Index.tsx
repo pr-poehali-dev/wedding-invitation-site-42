@@ -92,10 +92,36 @@ const Index = () => {
           <div className="w-24 h-px bg-primary mx-auto mb-6"></div>
           <p className="text-2xl md:text-3xl text-muted-foreground mb-8">15 августа 2025</p>
           <p className="text-lg text-muted-foreground mb-8">Через {daysUntil} дней</p>
-          <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed">
+          <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed mb-12">
             Мы рады пригласить вас разделить с нами этот особенный день, 
             когда мы начнем наше совместное путешествие по жизни
           </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="#story">
+              <Button variant="outline" className="gap-2">
+                <Icon name="Heart" size={18} />
+                Наша история
+              </Button>
+            </a>
+            <a href="#location">
+              <Button variant="outline" className="gap-2">
+                <Icon name="MapPin" size={18} />
+                Локация
+              </Button>
+            </a>
+            <a href="#schedule">
+              <Button variant="outline" className="gap-2">
+                <Icon name="Clock" size={18} />
+                Расписание
+              </Button>
+            </a>
+            <a href="#rsvp">
+              <Button className="gap-2">
+                <Icon name="CheckCircle" size={18} />
+                Подтвердить присутствие
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -114,6 +140,20 @@ const Index = () => {
                 </div>
               </Card>
             ))}
+          </div>
+          <div className="flex justify-center gap-4 mt-12">
+            <a href="#home">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Icon name="ArrowUp" size={16} />
+                Наверх
+              </Button>
+            </a>
+            <a href="#location">
+              <Button variant="ghost" size="sm" className="gap-2">
+                Далее
+                <Icon name="ArrowDown" size={16} />
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -159,6 +199,20 @@ const Index = () => {
               />
             </div>
           </div>
+          <div className="flex justify-center gap-4 mt-12">
+            <a href="#story">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Icon name="ArrowUp" size={16} />
+                Назад
+              </Button>
+            </a>
+            <a href="#schedule">
+              <Button variant="ghost" size="sm" className="gap-2">
+                Далее
+                <Icon name="ArrowDown" size={16} />
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -179,6 +233,20 @@ const Index = () => {
                 </div>
               </Card>
             ))}
+          </div>
+          <div className="flex justify-center gap-4 mt-12">
+            <a href="#location">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Icon name="ArrowUp" size={16} />
+                Назад
+              </Button>
+            </a>
+            <a href="#rsvp">
+              <Button variant="ghost" size="sm" className="gap-2">
+                Далее
+                <Icon name="ArrowDown" size={16} />
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -306,6 +374,20 @@ const Index = () => {
               </Button>
             </form>
           </Card>
+          <div className="flex justify-center gap-4 mt-12">
+            <a href="#schedule">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Icon name="ArrowUp" size={16} />
+                Назад
+              </Button>
+            </a>
+            <a href="#gallery">
+              <Button variant="ghost" size="sm" className="gap-2">
+                Далее
+                <Icon name="ArrowDown" size={16} />
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -322,6 +404,20 @@ const Index = () => {
                 />
               </div>
             ))}
+          </div>
+          <div className="flex justify-center gap-4 mt-12">
+            <a href="#rsvp">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Icon name="ArrowUp" size={16} />
+                Назад
+              </Button>
+            </a>
+            <a href="#gifts">
+              <Button variant="ghost" size="sm" className="gap-2">
+                Далее
+                <Icon name="ArrowDown" size={16} />
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -342,6 +438,20 @@ const Index = () => {
               </div>
             </div>
           </Card>
+          <div className="flex justify-center gap-4 mt-12">
+            <a href="#gallery">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Icon name="ArrowUp" size={16} />
+                Назад
+              </Button>
+            </a>
+            <a href="#home">
+              <Button variant="ghost" size="sm" className="gap-2">
+                <Icon name="Home" size={16} />
+                В начало
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
