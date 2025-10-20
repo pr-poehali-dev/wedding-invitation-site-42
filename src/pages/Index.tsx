@@ -92,7 +92,7 @@ const Index = () => {
         <h1 className="text-7xl md:text-9xl font-light mb-4 text-foreground">Анна & Иван</h1>
         <div className="w-24 h-px bg-primary mx-auto mb-6"></div>
         <p className="text-2xl md:text-3xl text-muted-foreground mb-4">15 августа 2025</p>
-        <p className="text-lg text-muted-foreground mb-8">Через {daysUntil} дней</p>
+        <p className="text-lg text-muted-foreground mb-8"> </p>
         <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed mb-8">
 </p>
         
