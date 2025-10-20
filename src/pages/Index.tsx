@@ -100,7 +100,7 @@ const Index = () => {
         
         <div className="max-w-md mx-auto mb-8">
           <Button 
-            className="h-20 w-full text-lg"
+            className="h-20 w-full text-lg uppercase"
             onClick={() => setOpenDialog('rsvp')}
           >
             Подтвердить присутствие
