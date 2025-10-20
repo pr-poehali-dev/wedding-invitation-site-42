@@ -116,7 +116,7 @@ const Index = () => {
             onClick={() => setOpenDialog('story')}
           >
             <Icon name="Heart" size={24} />
-            <span>История</span>
+            <span>История нашей любви</span>
           </Button>
           
           <Button 
@@ -151,7 +151,7 @@ const Index = () => {
       <Dialog open={openDialog === 'story'} onOpenChange={() => setOpenDialog(null)}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-4xl font-light text-center mb-8">Наша история</DialogTitle>
+            <DialogTitle className="text-4xl font-light text-center mb-8">История нашей любви</DialogTitle>
           </DialogHeader>
           <div className="space-y-8">
             {story.map((item, index) => (
