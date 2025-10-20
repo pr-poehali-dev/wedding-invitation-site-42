@@ -109,7 +109,7 @@ const Index = () => {
 
         <div className="w-32 h-px bg-primary/30 mx-auto mb-8"></div>
         
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
           <Button 
             variant="outline" 
             className="gap-2 h-24 flex-col"
@@ -144,15 +144,6 @@ const Index = () => {
           >
             <Icon name="Image" size={24} />
             <span>Фото</span>
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            className="gap-2 h-24 flex-col"
-            onClick={() => setOpenDialog('gifts')}
-          >
-            <Icon name="Gift" size={24} />
-            <span>Подарки</span>
           </Button>
         </div>
       </div>
@@ -262,25 +253,6 @@ const Index = () => {
                 />
               </div>
             ))}
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={openDialog === 'gifts'} onOpenChange={() => setOpenDialog(null)}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-4xl font-light text-center mb-8">Подарки</DialogTitle>
-          </DialogHeader>
-          <div className="text-center">
-            <div className="mb-6 text-5xl">🎁</div>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Ваше присутствие — самый ценный подарок для нас. 
-              Если вы хотите нас порадовать, мы будем благодарны за вклад в наше свадебное путешествие.
-            </p>
-            <Card className="p-6 bg-accent/20">
-              <p className="text-sm text-muted-foreground mb-2">Сбербанк</p>
-              <p className="text-xl font-medium">2202 2020 2020 2020</p>
-            </Card>
           </div>
         </DialogContent>
       </Dialog>
