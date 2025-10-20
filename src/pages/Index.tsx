@@ -87,23 +87,23 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background flex items-center justify-center px-4 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-64 h-64 opacity-20 pointer-events-none">
-        <div className="text-[12rem] transform -rotate-12">🌾</div>
+      <div className="absolute top-0 left-0 w-96 h-96 opacity-30 pointer-events-none">
+        <img src="https://cdn.poehali.dev/projects/42531c59-4b13-4aa8-8110-32c23b0fb676/files/85e2769d-ee93-4eb5-8587-ceef36d63d5b.jpg" alt="" className="w-full h-full object-contain transform -rotate-12" />
       </div>
-      <div className="absolute top-20 right-0 w-48 h-48 opacity-20 pointer-events-none">
-        <div className="text-[10rem] transform rotate-12">🌿</div>
+      <div className="absolute top-20 right-0 w-80 h-80 opacity-25 pointer-events-none">
+        <img src="https://cdn.poehali.dev/projects/42531c59-4b13-4aa8-8110-32c23b0fb676/files/40d8deed-5003-4522-9e3c-27967bdef82f.jpg" alt="" className="w-full h-full object-contain transform rotate-12" />
       </div>
-      <div className="absolute bottom-0 left-10 w-56 h-56 opacity-20 pointer-events-none">
-        <div className="text-[11rem] transform rotate-45">☁️</div>
+      <div className="absolute bottom-0 left-10 w-72 h-72 opacity-20 pointer-events-none">
+        <img src="https://cdn.poehali.dev/projects/42531c59-4b13-4aa8-8110-32c23b0fb676/files/85e2769d-ee93-4eb5-8587-ceef36d63d5b.jpg" alt="" className="w-full h-full object-contain transform rotate-45 scale-x-[-1]" />
       </div>
-      <div className="absolute bottom-20 right-0 w-72 h-72 opacity-15 pointer-events-none">
-        <div className="text-[14rem] transform -rotate-12">🌾</div>
+      <div className="absolute bottom-20 right-0 w-[450px] h-[450px] opacity-20 pointer-events-none">
+        <img src="https://cdn.poehali.dev/projects/42531c59-4b13-4aa8-8110-32c23b0fb676/files/40d8deed-5003-4522-9e3c-27967bdef82f.jpg" alt="" className="w-full h-full object-contain transform -rotate-12" />
       </div>
-      <div className="absolute top-1/2 left-0 w-40 h-40 opacity-20 pointer-events-none">
-        <div className="text-[8rem] transform rotate-90">🍃</div>
+      <div className="absolute top-1/2 left-0 w-64 h-64 opacity-25 pointer-events-none">
+        <img src="https://cdn.poehali.dev/projects/42531c59-4b13-4aa8-8110-32c23b0fb676/files/40d8deed-5003-4522-9e3c-27967bdef82f.jpg" alt="" className="w-full h-full object-contain transform rotate-90" />
       </div>
-      <div className="absolute top-1/3 right-10 w-44 h-44 opacity-15 pointer-events-none">
-        <div className="text-[9rem] transform -rotate-45">🌿</div>
+      <div className="absolute top-1/3 right-10 w-72 h-72 opacity-20 pointer-events-none">
+        <img src="https://cdn.poehali.dev/projects/42531c59-4b13-4aa8-8110-32c23b0fb676/files/85e2769d-ee93-4eb5-8587-ceef36d63d5b.jpg" alt="" className="w-full h-full object-contain transform -rotate-45" />
       </div>
       
       <div className="text-center animate-fade-in max-w-4xl w-full py-20 relative z-10">
