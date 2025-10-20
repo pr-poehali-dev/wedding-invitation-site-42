@@ -86,8 +86,27 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background flex items-center justify-center px-4">
-      <div className="text-center animate-fade-in max-w-4xl w-full py-20">
+    <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-background flex items-center justify-center px-4 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-64 h-64 opacity-20 pointer-events-none">
+        <div className="text-[12rem] transform -rotate-12">🌾</div>
+      </div>
+      <div className="absolute top-20 right-0 w-48 h-48 opacity-20 pointer-events-none">
+        <div className="text-[10rem] transform rotate-12">🌿</div>
+      </div>
+      <div className="absolute bottom-0 left-10 w-56 h-56 opacity-20 pointer-events-none">
+        <div className="text-[11rem] transform rotate-45">☁️</div>
+      </div>
+      <div className="absolute bottom-20 right-0 w-72 h-72 opacity-15 pointer-events-none">
+        <div className="text-[14rem] transform -rotate-12">🌾</div>
+      </div>
+      <div className="absolute top-1/2 left-0 w-40 h-40 opacity-20 pointer-events-none">
+        <div className="text-[8rem] transform rotate-90">🍃</div>
+      </div>
+      <div className="absolute top-1/3 right-10 w-44 h-44 opacity-15 pointer-events-none">
+        <div className="text-[9rem] transform -rotate-45">🌿</div>
+      </div>
+      
+      <div className="text-center animate-fade-in max-w-4xl w-full py-20 relative z-10">
         <div className="mb-8 text-6xl animate-float">🌸</div>
         <h1 className="text-7xl md:text-9xl font-light mb-4 text-foreground">Анна & Иван</h1>
         <div className="w-24 h-px bg-primary mx-auto mb-6"></div>
