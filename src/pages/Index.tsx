@@ -94,9 +94,7 @@ const Index = () => {
         <p className="text-2xl md:text-3xl text-muted-foreground mb-4">15 августа 2025</p>
         <p className="text-lg text-muted-foreground mb-8">Через {daysUntil} дней</p>
         <p className="text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed mb-8">
-          Мы рады пригласить вас разделить с нами этот особенный день, 
-          когда мы начнем наше совместное путешествие по жизни
-        </p>
+</p>
         
         <div className="max-w-md mx-auto mb-8">
           <Button 
